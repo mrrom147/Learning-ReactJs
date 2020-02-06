@@ -9,7 +9,10 @@ const CollectionItem = ({ name, imageUrl, price }) => (
         style={{ backgroundImage: `url(${imageUrl})` }}
       />
     </div>
-    <h2>{name}</h2>
+    <div className="shop-item-info">
+      <h2>{name}</h2>
+      <p>{price}</p>
+    </div>
   </div>
 );
 

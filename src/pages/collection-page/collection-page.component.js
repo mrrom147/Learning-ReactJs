@@ -1,10 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import CollectionItem from "./collection-item.component";
 import "./collection-page.style.scss";
 
-const Collection = ({ title, items }) => (
+const Collection = ({ title, items, routeName }) => (
   <div>
-    <h1>{title}</h1>
+    <h1>
+      <Link to={routeName}>{title}</Link>
+    </h1>
     <div className="collect-list">
       {items
         .filter((item, idx) => idx < 4)

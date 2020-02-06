@@ -1,17 +1,17 @@
 import React from "react";
+import CollectionItem from "./collection-item.component";
+import "./collection-page.style.scss";
 
 const Collection = ({ title, items }) => (
   <div>
     <h1>{title}</h1>
-    {items.map(({ id, name, imageUrl, price }) => (
-      <div key={id}>
-        <div className="shop-item">
-          <div>
-            <img src={imageUrl} alt={name} />
-          </div>
-        </div>
-      </div>
-    ))}
+    <div className="collect-list">
+      {items
+        .filter((item, idx) => idx < 4)
+        .map(({ id, ...data }) => (
+          <CollectionItem key={id} {...data} />
+        ))}
+    </div>
   </div>
 );
 

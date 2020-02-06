@@ -1,45 +1,17 @@
 import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
-
-import Lifecycles from "./lifecycles.component";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Home from "./pages/homepage.component";
+import Shop from "./pages/shop.component";
 
 class App extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      showChild: true,
-      text: ""
-    };
-  }
-
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <button
-            onClick={() =>
-              this.setState(state => ({
-                showChild: !state.showChild
-              }))
-            }
-          >
-            Toggle Lifecycles
-          </button>
-          <button
-            onClick={() =>
-              this.setState(state => ({
-                text: state.text + "_hello"
-              }))
-            }
-          >
-            Update Text
-          </button>
-          {this.state.showChild ? <Lifecycles text={this.state.text} /> : null}
-        </header>
-      </div>
+      <Router>
+        <div className="App">
+          <Route exact path="/" component={Home} />
+          <Route path="/shop" component={Shop} />
+        </div>
+      </Router>
     );
   }
 }

@@ -1,19 +1,24 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import Home from "./pages/homepage.component";
-import Shop from "./pages/shop.component";
+import { Switch, Route } from "react-router-dom";
 
-class App extends React.Component {
-  render() {
-    return (
-      <Router>
-        <div className="App">
-          <Route exact path="/" component={Home} />
-          <Route path="/shop" component={Shop} />
-        </div>
-      </Router>
-    );
-  }
+import "./App.css";
+
+import HomePage from "./pages/homepage/homepage.component";
+import ShopPage from "./pages/shop/shop.component";
+import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component";
+import Header from "./components/header/header.component";
+
+function App() {
+  return (
+    <div>
+      <Header />
+      <Switch>
+        <Route exact path="/" component={HomePage} />
+        <Route path="/shop" component={ShopPage} />
+        <Route path="/signin" component={SignInAndSignUpPage} />
+      </Switch>
+    </div>
+  );
 }
 
 export default App;

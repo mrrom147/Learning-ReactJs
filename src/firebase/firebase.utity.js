@@ -3,44 +3,44 @@ import "firebase/firestore";
 import "firebase/auth";
 
 const config = {
-  apiKey: "AIzaSyAOz0DLWN3xeqEDXcaJ8FgXZf-IJjOkpeQ",
-  authDomain: "learning-reactjs-bb2bf.firebaseapp.com",
-  databaseURL: "https://learning-reactjs-bb2bf.firebaseio.com",
-  projectId: "learning-reactjs-bb2bf",
-  storageBucket: "learning-reactjs-bb2bf.appspot.com",
-  messagingSenderId: "795410645615",
-  appId: "1:795410645615:web:ce77c1450f8570706dc39a",
-  measurementId: "G-HRBS44W4GJ"
+	apiKey: "AIzaSyAOz0DLWN3xeqEDXcaJ8FgXZf-IJjOkpeQ",
+	authDomain: "learning-reactjs-bb2bf.firebaseapp.com",
+	databaseURL: "https://learning-reactjs-bb2bf.firebaseio.com",
+	projectId: "learning-reactjs-bb2bf",
+	storageBucket: "learning-reactjs-bb2bf.appspot.com",
+	messagingSenderId: "795410645615",
+	appId: "1:795410645615:web:ce77c1450f8570706dc39a",
+	measurementId: "G-HRBS44W4GJ"
 };
 
 export const createUserProfileDocument = async (userAuth, additionalData) => {
-  if(!userAuth) return;
+	if (!userAuth) return;
 
-  const userRef = firestore.doc(`user/${userAuth.uid}`);
+	const userRef = firestore.doc(`user/${userAuth.uid}`);
 
-  const snapShot = await userRef.get();
+	const snapShot = await userRef.get();
 
-  if(!snapShot.exists) {
-    const { displayName, email } = userAuth;
-    const createAt = new Date();
+	if (!snapShot.exists) {
+		const { displayName, email } = userAuth;
+		const createAt = new Date();
 
-    try {
-      await userRef.set({
-        displayName,
-        email,
-        createAt,
-        ...additionalData
-      })
-    } catch(e){
-      console.log(e.message);
-    }
-  }
+		try {
+			await userRef.set({
+				displayName,
+				email,
+				createAt,
+				...additionalData
+			});
+		} catch (e) {
+			console.log(e.message);
+		}
+	}
 
-  return userRef;
+	return userRef;
 };
 
 if (!firebase.apps.length) {
-  firebase.initializeApp(config);
+	firebase.initializeApp(config);
 }
 
 export const auth = firebase.auth();
